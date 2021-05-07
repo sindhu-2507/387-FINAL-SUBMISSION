@@ -1,0 +1,50 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+
+
+.yes {
+  width: 50%;
+  float: center;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+  height: 400px;
+}
+
+.no{
+    width: 200px;
+}
+
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+<% for(var i=0; i < data.length; i++) { %>
+	<form action= "http://localhost:3000/viewdetail" method = "GET">
+    <div class = "yes">
+      
+     	<h2 id="something">Movie: <%= data[i].get('title') %> </h2>
+      <h2 id="something">Lead Role: <%= data[i].get('actor') %> </h2>
+      <h2 id="something">Rrated: <%= data[i].get('Rated') %> </h2>
+      <h2 id="something">Duration: <%= data[i].get('Dur') %> min </h2>
+      <h2 id="something">Average Rating: <%= data[i].get('arat') %> (out of 10) </h2>
+      <h2 id="something">Genres: 
+      <% for(var i=0; i < data1.length-1; i++) { %>
+        <%= data1[i].get('genre') %>, 
+      <% } %>
+      <%= data1[data1.length-1].get('genre') %>
+    </h2>
+    </div>
+  </form>
+   
+<% } %>
+
+</main>
+</body>
+<%- include('../includes/end.ejs') %>

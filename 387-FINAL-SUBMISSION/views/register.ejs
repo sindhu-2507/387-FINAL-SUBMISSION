@@ -1,0 +1,55 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+
+
+.yes {
+  width: 50%;
+  float: center;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+  height: 400px;
+}
+
+.no{
+    width: 200px;
+}
+
+</style>
+
+<body>
+
+<main>
+  <form action= "http://localhost:3000/register" method = "POST">
+    <!-- user input-->
+    <h2>Register Here....</h2>
+    Username:<br>
+    <input type="text" name="username" placeholder="Username" required><br><br>
+    Name:<br>
+    <input type="text" name="name" placeholder="Name" required><br><br>
+    Password:<br>
+    <input type="password" name="password" placeholder="Password" required><br><br>
+    Date of Birth:<br>
+    <input type="date" name="dob" placeholder="DD/MM/YYYY" required><br><br>
+    Gender:<br>
+    <input type="text" name="gender" placeholder="Gender"><br><br>
+    Country:<br>
+    <input type="text" name="country" placeholder="Country"><br><br> 
+    <!-- submit button -->
+    <input type="hidden" name="signal" value=1>
+    <input type="submit" value="Regsiter">
+
+  </form>
+  <h3>Already have an account
+    <form action= "http://localhost:3000/register" method = "POST">
+      <input type="hidden" name="signal" value=2>
+      <button>Proceed to login</button>
+    </form>
+  </h3>
+</main>
+</body>
+<%- include('../includes/end.ejs') %>

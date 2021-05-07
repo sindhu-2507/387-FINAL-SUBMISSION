@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 300px;
+  float: left;
+  border: 2px solid black;
+  padding: 50px;
+  margin: 20px;
+}
+.no{
+    width: 200px;
+}
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+
+<form action="http://localhost:3000/profile" method = "POST">
+  <label for="fname">Username:</label><br>
+  <input type="text" id="username" name="username" value="<%= data[0].get('username') %>"><br>
+  <label for="fname">Name:</label><br>
+  <input type="text" id="name" name="name" value= "<%= data[0].get('Name') %>" ><br>
+  <label for="fname">Date of Birth:</label><br>
+  <input type="text" id="dob" name="dob" value="<%= data[0].get('dob') %>"><br>
+  <label for="fname">Gender:</label><br>
+  <input type="text" id="gender" name="gender" value="<%= data[0].get('gender') %>"><br>
+  <label for="fname">Country:</label><br>
+  <input type="text" id="country" name="country" value="<%= data[0].get('country') %>"><br>
+  <input type="submit" onclick= "http://localhost:3000/profile" value="Edit profile">
+</form> 
+
+</main>
+
+<%- include('../includes/end.ejs') %>

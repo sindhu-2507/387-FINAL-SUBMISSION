@@ -1,0 +1,53 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 300px;
+  float: left;
+  border: 2px solid black;
+  padding: 50px;
+  margin: 20px;
+}
+.no{
+    width: 200px;
+}
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+<p> Friend Requests </p> 
+<% for(var i=0; i < data.length; i++) { %>
+  <form action= "http://localhost:3000/friend_request" method = "POST">
+    <div class = "yes">
+      <h2 > Username: <%= data[i].get('username') %> </h2>
+      <h2 > Name: <%= data[i].get('name') %> </h2>
+
+
+    <form action= "http://localhost:3000/friend_request" method = "POST">
+    <input type="hidden" name="signal" value=2>
+    <input type="hidden" name="user" value = <%= data[i].get('username') %> > 
+    <button class="btn" onclick="http://localhost:3000/friend_request"> Accept Request </button>
+    </form>
+
+    <br>
+    <br>
+   
+    <form action= "http://localhost:3000/friend_request" method = "POST">
+    <input type="hidden" name="signal" value=3>
+    <input type="hidden" name="user" value = <%= data[i].get('username') %> > 
+    <button class="btn" onclick="http://localhost:3000/friend_request"> Delete Request </button>
+    </form>
+
+
+    </form>
+    </div>
+<% } %>
+
+</main>
+
+<%- include('../includes/end.ejs') %>

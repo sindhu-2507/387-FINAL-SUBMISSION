@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 300px;
+  float: left;
+  border: 2px solid black;
+  padding: 50px;
+  margin: 20px;
+}
+.no{
+    width: 200px;
+}
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+
+<form action= "http://localhost:3000/home" method = "POST">
+<label for="title"> Actor/Actress </label>
+<input type="text" name="actor" id="actor" value="<% if (editing) { %><%= actor %><% } %>">
+<button class="btn" type="submit"><% onclick="http://localhost:3000/favourite" %> Search </button>
+</form>
+
+<br>
+<br>
+<% for(var i=0; i < data.length; i++) { %>
+  <form action= "http://localhost:3000/home" method = "POST">
+    <div class = "yes">
+      <h2 id="something"><%= data[i].get('title') %> </h2>
+    <p> something </p>
+    <button class="btn" type="submit" onclick="http://localhost:3000/watchlist"> Add to Watchlist </button>
+    <button class="btn" type="submit" onclick="http://localhost:3000/view_detail"> View details </button>
+    </form>
+    </div>
+<% } %>
+
+
+</main>
+
+<%- include('../includes/end.ejs') %>

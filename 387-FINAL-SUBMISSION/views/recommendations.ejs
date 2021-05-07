@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 30%;
+  float: left;
+  background-color: #E3E4FA;
+  border: 3px solid black;
+  padding: 20px;
+  margin: 10px;
+  height: 120px;
+}
+.no{
+    width: 200px;
+}
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+
+<% for(var i=0; i < data2.length; i++) { %>
+  <form action= "http://localhost:3000/recommendations" method = "GET">
+    <div class = "yes">
+      <h2 id="something"><%= data2[i].get('movie_title') %> </h2>
+    </form>
+    </div>
+<% } %>
+
+<% for(var i=0; i < data1.length; i++) { %>
+  <form action= "http://localhost:3000/recommendations" method = "GET">
+    <div class = "yes">
+      <h2 id="something"><%= data1[i].get('movie_title') %> </h2>
+    </form>
+    </div>
+<% } %>
+
+</main>
+
+<%- include('../includes/end.ejs') %>

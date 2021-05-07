@@ -1,0 +1,68 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 300px;
+  float: left;
+  border: 2px solid black;
+  padding: 50px;
+  margin: 20px;
+}
+.no{
+    width: 200px;
+}
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+
+<% if (data==0) { %>
+  <form action= "http://localhost:3000/searched_friend" method = "POST">
+    <div class = "yes">
+      <h2 id="something"><%= data1 %> </h2>
+    <p> something </p>
+    <input type="hidden" name="signal" value=0>
+    <input type="hidden" name="friend" value= "<%= data1 %>" >
+    <button class="btn" type="submit"> Send request </button>
+    </div>
+    </form>
+    
+<% } %>
+
+<% if (data==1) { %>
+   <div class = "yes">
+      <h2 id="something"><%= data1 %> </h2>
+    <p> something </p>
+    <input type="hidden" name="signal" value=1>
+    <p> Already Friends with user </p>
+    </div>
+<% } %>
+
+<% if (data==2) { %>
+  <form action= "http://localhost:3000/searched_friend" method = "POST">
+    <div class = "yes">
+      <h2 id="something"><%= data1 %> </h2>
+        <input type="hidden" name="signal" value=2>
+        <input type="hidden" name="friend" value= "<%= data1 %>" >
+       <button class="btn" type="submit" onclick="http://localhost:3000/friends"> Accept Request </button>
+    </form>
+    </div>
+<% } %>
+
+<% if (data==4) { %>
+    <div class = "yes">
+    <input type="hidden" name="signal" value=4>
+      <h2 id="something"><%= data1 %> </h2>
+    <p>  Request sent </p>
+    </div>
+<% } %>
+
+
+</main>
+
+<%- include('../includes/end.ejs') %>

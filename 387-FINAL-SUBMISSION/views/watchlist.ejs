@@ -1,0 +1,75 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 30%;
+  float: left;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+  height: 200px;
+}
+.no{
+    width: 220px;
+}
+
+.button1 {
+  background-color: white; 
+  color: #C12267; 
+  border: 3px solid #C12267;
+}
+
+.button1:hover {
+  background-color: #C12267;
+  font-size: 20px;
+  color: solid black;
+}
+
+.button2 {
+  background-color: white; 
+  color: gray; 
+  border: 3px solid gray;
+}
+
+.button2:hover {
+  background-color: gray;
+  font-size: 20px;
+  color: solid black;
+}
+
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+<h2 style="color:Tomato;"><b>WatchList</b></h2>
+<% for(var i=0; i < data.length; i++) { %>
+  <form action= "http://localhost:3000/watchlist" method = "POST">
+    <div class = "yes">
+      <h2 id="something"><%= data[i].get('movie_title') %> </h2>
+      
+      <form action= "http://localhost:3000/watchlist" method = "POST">
+      <input type="hidden" name="signal" value=1>
+      <input type="hidden" name="title" value="<%= data[i].get('movie_title') %>">
+      <button class="btn btn-primary btn-sm button1"> View Detail</button>
+      </form>
+
+      <br>
+
+      <form action= "http://localhost:3000/watchlist" method = "POST">
+      <input type="hidden" name="signal" value=2>
+      <input type="hidden" name="title" value="<%= data[i].get('movie_title') %>">
+      <button class="btn btn-primary btn-sm button2">Remove from Watchlist</button>
+      </form>
+    
+    </div>
+  </form>
+<% } %>
+
+</main>
+
+<%- include('../includes/end.ejs') %>

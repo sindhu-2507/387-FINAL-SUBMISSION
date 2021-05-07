@@ -1,0 +1,41 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 300px;
+  float: left;
+  border: 2px solid black;
+  padding: 50px;
+  margin: 20px;
+}
+.no{
+    width: 200px;
+}
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+<p> Movies Recommended by Friends </p> 
+<% for(var i=0; i < data.length; i++) { %>
+  <form action= "http://localhost:3000/movies_recommended" method = "POST">
+    <div class = "yes">
+      <h2 ><%= data[i].get('User_name') %> </h2>
+      <h2 ><%= data[i].get('Name') %> </h2>
+      <h2 ><%= data[i].get('title') %> </h2>
+
+    <button onclick="http://localhost:3000/view_detail"> View Detail </button>
+    <br>
+    <button onclick="http://localhost:3000/watchlist"> Add to Watchlist </button>
+
+    </form>
+    </div>
+<% } %>
+
+</main>
+
+<%- include('../includes/end.ejs') %>

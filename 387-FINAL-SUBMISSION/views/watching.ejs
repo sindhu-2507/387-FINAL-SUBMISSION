@@ -1,0 +1,121 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 30%;
+  float: left;
+  border: 2px solid black;
+  padding: 20px;
+  margin: 10px;
+  height: 220px;
+}
+.no{
+    width: 200px;
+}
+
+
+.button1 {
+  background-color: white; 
+  color: #C12267; 
+  border: 3px solid #C12267;
+}
+
+.button1:hover {
+  background-color: #C12267;
+  font-size: 16px;
+  color: solid black;
+}
+
+.button2 {
+  background-color: white; 
+  color: gray; 
+  border: 3px solid gray;
+}
+
+.button2:hover {
+  background-color: gray;
+  font-size: 16px;
+  color: solid black;
+}
+
+.button3 {
+  background-color: white; 
+  color: #3B9C9C; 
+  border: 3px solid #3B9C9C;
+}
+
+.button3:hover {
+  background-color: #3B9C9C;
+  font-size: 16px;
+  color: solid black;
+}
+</style>
+
+<body>
+
+<script>
+
+  function myFunction() {
+    var txt;
+    var person = prompt("Please rate the movie");
+    if (person == null || person == "") {
+      txt = "User cancelled the prompt.";
+    } else {
+      txt = "Hello " + person + "! How are you today?";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+</script>
+    
+<%- include('../includes/navigation.ejs') %>
+<main>
+<h2 style="color:Tomato;"><b>Watching</b></h2>
+<% for(var i=0; i < data.length; i++) { %>
+  <form action= "http://localhost:3000/watching" method = "POST">
+    <div class = "yes">
+      <h2 id="something"><%= data[i].get('movie_title') %> </h2>
+
+      <input class="btn btn-primary btn-sm button1" type=button value='Rate' OnClick="show_prompt()">
+
+      <script type="text/javascript"> 
+        function show_prompt() { 
+        var my_string = prompt("Rate the movie out of 10","");
+        var r = confirm();
+        var txt;
+        if(r=true){
+          txt = "ok";
+        }
+        else{
+          txt = "cancel";
+        }
+        document.getElementById("demo").innerHTML = txt;
+        }
+      </script>
+
+      <!--<button style="position:relative; left:5px; top:2px; background-color:cyan;" type="button" onclick="myfunction();"> Rate Me</button>
+      -->
+      <form action= "http://localhost:3000/watching" method = "POST">
+      <input type="hidden" name="signal" value=1>
+      <input type="hidden" name="title" value="<%= data[i].get('movie_title') %>">
+      <button class="btn btn-primary btn-sm button2"> View Detail</button>
+      </form>
+
+      <br>
+      
+      <form action= "http://localhost:3000/watching" method = "POST">
+      <input type="hidden" name="signal" value=2>
+      <input type="hidden" name="title" value="<%= data[i].get('movie_title') %>">
+      <button class="btn btn-primary btn-sm button3">Remove from Watching</button>
+      </form>
+    
+    </div>
+  </form>
+<% } %>
+
+</main>
+
+<%- include('../includes/end.ejs') %>

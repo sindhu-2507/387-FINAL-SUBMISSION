@@ -1,0 +1,137 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<style>
+.yes {
+  width: 30%;
+  float: left;
+  border: 3px solid black;
+  padding: 20px;
+  margin: 10px;
+  height: 300px;
+}
+.no{
+    width: 200px;
+}
+body {
+  background-image: url('fi.jpeg');
+}
+/*body {
+  background-image: url('/filmy.jpeg');
+
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/
+
+.button1 {
+  background-color: white; 
+  color: #C12267; 
+  border: 3px solid #C12267;
+}
+
+.button1:hover {
+  background-color: #C12267;
+  font-size: 20px;
+  color: solid black;
+}
+
+.button2 {
+  background-color: white; 
+  color: gray; 
+  border: 3px solid gray;
+}
+
+.button2:hover {
+  background-color: gray;
+  font-size: 20px;
+  color: solid black;
+}
+
+.button3 {
+  background-color: white; 
+  color: #3B9C9C; 
+  border: 3px solid #3B9C9C;
+}
+
+.button3:hover {
+  background-color: #3B9C9C;
+  font-size: 20px;
+  color: solid black;
+}
+
+</style>
+
+<body>
+
+<%- include('../includes/navigation.ejs') %>
+<main>
+
+<form action= "http://localhost:3000/home" method = "POST">
+<label style="color:black;" for="title"> <b>Movie</b>  </label>
+<input type="text" placeholder = "Search movies.." name="movie" id="movie" value="<% if (editing) { %><%= movie %><% } %>">
+<button class="btn" type="submit"><% onclick="http://localhost:3000/recommendations" %> Search </button>
+</form>
+&emsp;
+&emsp;
+<form action= "http://localhost:3000/home" method = "POST">
+<label style="color:black;" for="title"> <b>Genre</b>  </label>
+<input type="text" placeholder = "Search genre.." name="genre" id="genre" value="<% if (editing) { %><%= genre %><% } %>">
+<button class="btn" type="submit"><% onclick="http://localhost:3000/recommendations" %> Search </button>
+</form>
+&emsp;
+&emsp;
+<br><br>
+<form action= "http://localhost:3000/home" method = "POST">
+<label style="color:black;" for="title"> <b>Actor/Actress</b>  </label>
+<input type="text" placeholder = "Search actor/actress.." name="actor" id="actor" value="<% if (editing) { %><%= actor %><% } %>">
+<button class="btn" type="submit"><% onclick="http://localhost:3000/recommendations" %> Search </button>
+</form>
+
+<form action= "http://localhost:3000/home" method = "POST">
+  <input type="hidden" name="sig" value=1>
+  <button style="font-size:22px; position:relative; left:400px; top:-2px;">Logout</button>
+</form>
+
+<br>
+<br>
+<% for(var i=0; i < data1.length; i++) { %>
+  <form action= "http://localhost:3000/home" method = "POST">
+    <div class = "yes">
+      <h2 id="something"><%= data1[i].get('title') %> </h2>
+
+      <form action= "http://localhost:3000/home" method = "POST">
+      <input type="hidden" name="signal" value=1>
+      <input type="hidden" name="title" value="<%= data1[i].get('title') %>">
+      <button style="position:relative; left:5px; top:2px;" class="btn btn-primary btn-sm button1"> Watch</button>
+      </form>
+
+      <br>
+      <form action= "http://localhost:3000/home" method = "POST">
+      <input type="hidden" name="signal" value=2>
+      <input type="hidden" name="title" value="<%= data1[i].get('title') %>">
+      <button style="position:relative; left:5px; top:2px; " class="btn btn-primary btn-sm button2"> View Detail </button>
+      </form>
+
+      <br>
+
+      <form action= "http://localhost:3000/home" method = "POST">
+      <input type="hidden" name="signal" value=3>
+      <input type="hidden" name="title" value="<%= data1[i].get('title') %>">
+      <button style="position:relative; left:5px; top:2px;" class="btn btn-primary btn-sm button3"> Add to Watchlist </button>
+      </form>
+    
+    </div>
+   
+  </form>
+    
+<% } %>
+
+
+
+</main>
+</body>
+<%- include('../includes/end.ejs') %>
